@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wladder</title>
+  <link data-turbolinks-track="true" href="/wladder/stylesheets/application.css" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="/wladder/javascripts/application.js"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+  <meta content="at3ht3nNjX5W8BU7DMuJ+HBr5/aLk2XJ2rp5EZ6N3Uk=" name="csrf-token" />
+</head>
+<body>
+
+<h1>Derek's Word Ladder</h1>
+<hr>
+<p>
+Fill in each step with a word that differs from the word in the previous step by no more than one character.  Once you reach a word that differs from the goal by only one letter, you can stop and leave the remainder of the steps empty.
+</p>
+<br>
+<br>
+Step 0:&nbsp;&nbsp; hoes
+<form accept-charset="UTF-8" action="/wladder/check" method="get"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label for="step1">Step 1: </label>
+  <input id="step1" name="step1" type="text" /><br>
+  <label for="step2">Step 2: </label>
+  <input id="step2" name="step2" type="text" /><br>
+  <label for="step3">Step 3: </label>
+  <input id="step3" name="step3" type="text" /><br>
+  <label for="step4">Step 4: </label>
+  <input id="step4" name="step4" type="text" /><br>
+  <label for="step5">Step 5: </label>
+  <input id="step5" name="step5" type="text" /> <input name="commit" type="submit" value="Check Answer" />
+  <input id="start_word" name="start_word" type="hidden" value="hoes" />
+  <input id="end_word" name="end_word" type="hidden" value="rolf" />
+</form>Goal:&nbsp;&nbsp;&nbsp; rolf
+<br>
+
+
+</body>
+</html>
+
