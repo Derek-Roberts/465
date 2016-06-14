@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   def show
     @query_text = params[:query]
     if @query_text =~ /^[a-zA-Z0-9\.\-]*$/
-      @result = @query_text.split("\n")
+      @result = `whois #{@query_text}`.split("\n")
     else
       @result = ["Illegal URL"];
     end
