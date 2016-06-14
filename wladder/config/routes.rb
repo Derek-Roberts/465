@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   get 'step3', to: 'home#results'
   get 'step4', to: 'home#results'
   get 'step5', to: 'home#results'
+  get 'Check Answer', to: 'home#results'
+  get 'start_word', to: 'home#results'
+  get 'end_word', to: 'home#results'
 end
