@@ -1,0 +1,11 @@
+<%= link_to "Play Again", root_path %>
+<br>
+<br>
+<h1>Your Guesses</h1>
+<br>
+<!-- "$ whois #{@query_text} returned" -->
+<br>
+<% @input.each do |line| %>
+    <%= line %>
+    <br>
+<% end %>

@@ -1,22 +1,20 @@
-<h1>Wladder Game</h1>
-<br>
+<h1>Derek's Word Ladder</h1>
+<hr>
+<p>
+Fill in each step with a word that differs from the word in the previous step by no more than one character.  Once you reach a word that differs from the goal by only one letter, you can stop and leave the remainder of the steps empty.
+</p>
 <br>
 <br>
 <%= form_tag(check_path, method: "get") do  %>
     <%= label_tag(:step1, "Step 1: ") %>
-    <%= text_field_tag(:step1) %>
-    <br>
+    <%= text_field_tag(:step1) %><br>
     <%= label_tag(:step2, "Step 2: ") %>
-    <%= text_field_tag(:step2) %>
-    <br>
+    <%= text_field_tag(:step2) %><br>
     <%= label_tag(:step3, "Step 3: ") %>
-    <%= text_field_tag(:step3) %>
-    <br>
-    <%= label_tag(:step4, "Step 5: ") %>
-    <%= text_field_tag(:step5) %>
-    <br>
+    <%= text_field_tag(:step3) %><br>
+    <%= label_tag(:step4, "Step 4: ") %>
+    <%= text_field_tag(:step4) %><br>
     <%= label_tag(:step5, "Step 5: ") %>
-    <%= text_field_tag(:step5) %>
-    <%= submit_tag("Check Answers") %>
+    <%= text_field_tag(:step5) %> <%= submit_tag("Check Answers") %>
 <% end %>
 <br>
