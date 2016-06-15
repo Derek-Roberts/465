@@ -3,20 +3,20 @@
 <br>
 <h3>Your Guesses</h3>
 <br>
-<table>
+<table border="1" cellpadding="3">
   <tbody>
     <tr>
-      <td>Start:</td>
+      <td style="text-align: right;">Start:</td>
       <td><%= @start_word %></td>
     </tr>
     <% @steps.each_with_index do |line, index| %>
       <tr>
-        <td>Step<%= index + 1 %>:</td>
+        <td style="text-align: right;">Step<%= index + 1 %>:</td>
         <td><%= line %><br></td>
       </tr>
     <% end %>
     <tr>
-      <td>End:</td>
+      <td style="text-align: right;">End:</td>
       <td><%= @end_word %></td>
     </tr>
   </tbody>
