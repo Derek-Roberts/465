@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   root "home#index"
+
+  get 'refresh', to: 'home#index'
+  get 'word_id', to: 'home#index'
+
   get 'check', to: 'home#results'
   get 'step1', to: 'home#results'
   get 'step2', to: 'home#results'

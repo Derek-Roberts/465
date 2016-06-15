@@ -4,11 +4,12 @@
 Fill in each step with a word that differs from the word in the previous step by no more than one character.  Once you reach a word that differs from the goal by only one letter, you can stop and leave the remainder of the steps empty.
 </p>
 <h3>Please pick a word length: 
-<%= form_tag(refresh_path, method: "get") do  %>
+<%= form_tag(check_path, method: "get") do  %>
   <%= select_tag(:word_id, '<option value="4">Four Letters</option><option value="5">Five Letters</option>'.html_safe)%>
   <%= submit_tag("Refresh") %>
 <% end %>
 </h3>
+<br>
 <h4>Word Length: <%= @word_length %></h4>
 Step 0:&nbsp;&nbsp;&nbsp;<%= @start_word %>
 <%= form_tag(check_path, method: "get") do  %>
