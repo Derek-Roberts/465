@@ -1,11 +1,28 @@
 <%= link_to "Play Again", root_path %>
 <br>
 <br>
-<h1>Your Guesses</h1>
+<h3>Your Guesses</h3>
 <br>
-<!-- "$ whois #{@query_text} returned" -->
-<br>
-<% @steps.each do |line| %>
-    <%= line %>
-    <br>
+<table>
+  <tbody>
+    <tr>
+      <td>Start:</td>
+      <td><%= @start_word %></td>
+    </tr>
+    <% @steps.each_with_index do |line, index| %>
+      <tr>
+        <td>Step<%= index + 1 %>:</td>
+        <td><%= line %><br></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>End:</td>
+      <td><%= @end_word %></td>
+    </tr>
+  </tbody>
+</table>
+<% if @valid_ladder %>
+  <h3>Correct! You Win!</h3>
+<% else %>
+  <h3>Incorrect. You Lose!</h3>
 <% end %>

@@ -12,16 +12,14 @@ class HomeController < ApplicationController
   end
 
   def results
-    #legal steps
-    #@query_text = params[:query]
-    #if @query_text =~ /^[a-zA-Z0-9\.\-]*$/
-    #  @result = `whois #{@query_text}`.split("\n")
-    #else
-    #  @result = ["Illegal URL"];
-    #end
+    @all_steps = [params[:start_word], params[:step1], params[:step2], params[:step3], params[:step4], params[:step5], params[:end_word]] 
+    # Must get rid of the empty elements if the user didn't use every step
+    @all_steps.reject! {|step| step.empty? }
     @steps = [params[:step1], params[:step2], params[:step3], params[:step4], params[:step5]] 
+    @steps.reject! {|step| step.empty? }
     @start_word = params[:start_word]
     @end_word = params[:end_word]
+    @valid_ladder = legal @all_steps
   end
 
 end
