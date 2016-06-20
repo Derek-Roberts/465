@@ -1,0 +1,24 @@
+<h1>Listing references</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Topic</th>
+      <th>Annotation</th>
+      <th>Time Created</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @references.each do |reference| %>
+      <tr>
+        <td><%= reference.url %></td>
+        <td><%= reference.topic %></td>
+        <td><%= reference.annotation %></td>
+        <td><%= reference.creationtime %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

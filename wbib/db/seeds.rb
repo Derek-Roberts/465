@@ -5,3 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+r = Reference.create(url: "https://whatisnuclear.com/articles/waste.html", topic: "Nuclear Waste", annotation: "A description of what nuclear waste is", creationtime: DateTime.now)
