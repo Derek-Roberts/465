@@ -14,7 +14,7 @@
 </p>
 <p>
   <strong>Creation Time:</strong>
-  <%= @reference.creationtime %>
+  <%= @reference.created_at.localtime.strftime("%b %d, %y at %r") %>
 </p>
 
 <%= link_to 'Show All References', references_path %>
