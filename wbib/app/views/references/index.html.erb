@@ -18,7 +18,10 @@
         <td><%= reference.topic %></td>
         <td><%= reference.annotation %></td>
         <td><%= reference.creationtime %></td>
+        <td><%= link_to 'Show', reference %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New Reference', controller: "references", action: "new" %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @reference.topic %>
+</p>
+<p>
+  <strong>Annotation:</strong>
+  <%= @reference.annotation %>
+</p>
+<p>
+  <strong>Reference:</strong>
+  <%= @reference.url %>
+</p>
+<p>
+  <strong>Creation Time:</strong>
+  <%= @reference.creationtime %>
+</p>
+
+<%= link_to 'Show All References', references_path %>
