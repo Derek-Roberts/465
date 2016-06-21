@@ -3,10 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>URL</th>
       <th>Topic</th>
-      <th>Annotation</th>
-      <th>Time Created</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -14,14 +11,13 @@
   <tbody>
     <% @references.each do |reference| %>
       <tr>
-        <td><%= reference.url %></td>
         <td><%= reference.topic %></td>
-        <td><%= reference.annotation %></td>
-        <td><%= reference.creationtime %></td>
         <td><%= link_to 'Show', reference %></td>
+        <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
+        <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: "Are you sure you want to delete this topic: #{reference.topic}?"} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<br>
 <%= link_to 'New Reference', controller: "references", action: "new" %>

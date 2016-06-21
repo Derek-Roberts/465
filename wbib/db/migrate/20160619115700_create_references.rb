@@ -5,6 +5,7 @@ class CreateReferences < ActiveRecord::Migration
       t.string :topic
       t.string :annotation
       t.datetime :creationtime
+      t.timestamps
     end
   end
 end
