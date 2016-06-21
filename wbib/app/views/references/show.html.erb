@@ -10,11 +10,17 @@
 </p>
 <p>
   <strong>Reference:</strong>
-  <%= @reference.url %>
+  <%= link_to @reference.url, @reference.url, :target => "_blank" %>
 </p>
 <p>
   <strong>Creation Time:</strong>
   <%= @reference.created_at.localtime.strftime("%b %d, %y at %r") %>
 </p>
-
+  <tbody>
+    <tr>
+      <td><%= link_to 'Edit', edit_reference_path(@reference) %></td>
+      <td><%= link_to 'Destroy', @reference, method: :delete, data: { confirm: "Are you sure you want to delete this topic: #{@reference.topic}?"} %></td>
+    </tr>
+  </tbody>
+<br><br>
 <%= link_to 'Show All References', references_path %>
