@@ -1,5 +1,7 @@
 <div class=box>
-<h1>Listing references</h1>
+<h1>Wbib - List of References</h1>
+Click on a topic below to view its reference
+<br>
 
 <% if @references.count == 0%>
   <h3>No Topics</h3>
@@ -15,8 +17,7 @@
     <tbody>
       <% @references.each do |reference| %>
         <tr>
-          <td><%= reference.topic %></td>
-          <td><%= link_to 'Show', reference %></td>
+          <td><%= link_to reference.topic, reference %></td>
           <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
           <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: "Are you sure you want to delete this topic: #{reference.topic}?"} %></td>
         </tr>
