@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'quiet_assets', group: :development
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
+# Here is a gem for validating the URL
+gem "validate_url", group: :development
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record

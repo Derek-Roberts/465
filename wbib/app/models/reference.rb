@@ -1,7 +1,7 @@
 class Reference < ActiveRecord::Base
   before_validation :add_http
 
-  validates :url, presence: true
+  validates :url, presence: true, url: true
   validates :topic, presence: true
   validates :annotation, presence: true
 
