@@ -26,7 +26,6 @@ class ReferencesController < ApplicationController
   
   end
 
-
   # PATCH /references/1
   def update
     if @reference.update(reference_params)
