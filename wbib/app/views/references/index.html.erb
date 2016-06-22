@@ -1,3 +1,4 @@
+<div class=box>
 <h1>Listing references</h1>
 
 <% if @references.count == 0%>
@@ -6,7 +7,7 @@
   <table>
     <thead>
       <tr>
-        <th>Topic</th>
+        <th><h3>Topic</h3></th>
         <th colspan="4"></th>
       </tr>
     </thead>
@@ -25,4 +26,18 @@
   <br>
 <% end %>
 
+<div class=credit>
+  <h3>Dancing Man courtesy of</h3>
+  <h3>Jesper Nellemann Jakobsen's codepen</h3>
+  <h3>and http://woot.co.uk/</h3>
+</div>
+
 <%= link_to 'New Reference', controller: "references", action: "new" %>
+</div>
+<br><br>
+<br><br>
+<br><br>
+<div class="floor"></div>
+<!-- thank you: http://woot.co.uk/ -->
+<!-- thank you: http://loopable.files.wordpress.com/ -->
+<img src="http://www.woot.co.uk/images/bitdance.gif" class="woot-dance" width="328" height="272" alt="8-bit dancing guy">
