@@ -1,7 +1,7 @@
 <%= form_for(@reference) do |f| %>
   <% if @reference.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@reference.errors.count, "error") %>prohibited this reference from being saved:</h2>
+      <h2><%= pluralize(@reference.errors.count, "error") %> prohibited this reference from being saved:</h2>
       <ul>
         <% @reference.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -9,6 +9,11 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
 
   <div class="field">
     <%= f.label :topic %><br>
@@ -20,11 +25,6 @@
     <%= f.text_field :annotation %>
   </div>
 
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
-  </div>
-  
   <div class="actions">
     <%= f.submit %>
   </div>
