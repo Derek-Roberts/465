@@ -37,6 +37,7 @@ table, td {
   padding: 0 0 0 30px;  
 }
 .credit {
+  padding: 30px 30px 0 0;
   float: right;
   text-align: center;
 }
