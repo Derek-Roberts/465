@@ -1,10 +1,10 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
-  # Generates the random filename for the images create function that is 15 characters long and includes lowercase letters and numbers
+  # Generates the random filename for the images create function that is 15 characters long and includes lowercase letters and numbers then appends .jpg to the end
   def generate_filename
-    characterset = Array('a'..'z') + Array(1..9)
-    @image.filename = Array.new(15) {charset.sample}.join
+    charset = Array('a'..'z') + Array(1..9)
+    @image.filename = Array.new(15) {charset.sample}.join.concat(".jpg")
   end
 
   # GET /images
