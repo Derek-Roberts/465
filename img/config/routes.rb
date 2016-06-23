@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :image_users
+  resources :tags
+  resources :images
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
