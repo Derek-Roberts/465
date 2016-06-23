@@ -40,3 +40,6 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Don't add the images from the 'img' assignment to github
+/img/public/images
