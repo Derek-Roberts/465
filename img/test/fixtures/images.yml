@@ -2,10 +2,10 @@
 
 one:
   filename: MyString
-  private_flag: false
+  private: false
   user_id: 1
 
 two:
   filename: MyString
-  private_flag: false
+  private: false
   user_id: 1
