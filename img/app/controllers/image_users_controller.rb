@@ -2,13 +2,11 @@ class ImageUsersController < ApplicationController
   before_action :set_image_user, only: [:show, :edit, :update, :destroy]
 
   # GET /image_users
-  # GET /image_users.json
   def index
     @image_users = ImageUser.all
   end
 
   # GET /image_users/1
-  # GET /image_users/1.json
   def show
   end
 
@@ -22,7 +20,6 @@ class ImageUsersController < ApplicationController
   end
 
   # POST /image_users
-  # POST /image_users.json
   def create
     @image_user = ImageUser.new(image_user_params)
 
@@ -38,7 +35,6 @@ class ImageUsersController < ApplicationController
   end
 
   # PATCH/PUT /image_users/1
-  # PATCH/PUT /image_users/1.json
   def update
     respond_to do |format|
       if @image_user.update(image_user_params)
@@ -52,7 +48,6 @@ class ImageUsersController < ApplicationController
   end
 
   # DELETE /image_users/1
-  # DELETE /image_users/1.json
   def destroy
     @image_user.destroy
     respond_to do |format|
