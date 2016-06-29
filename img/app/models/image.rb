@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
   has_many :Users, through: :ImageUsers
   accepts_nested_attributes_for :Users
 
-  belongs_to :Users
+  has_and_belongs_to_many :Users
   has_many :ImageUsers
 
   # Delete the image's tags when the image has been deleted

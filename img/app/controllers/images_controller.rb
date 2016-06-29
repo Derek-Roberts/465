@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
 
   # GET /images/1
   def show
-    @image_user = @image.imageusers.new
+    @imageuser = @image.ImageUsers.new
     #@eligible_users
   end
 
