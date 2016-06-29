@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
   def generate_filename
     charset = Array('a'..'z') + Array(1..9)
     @image.filename = Array.new(15) {charset.sample}.join.concat(".jpg")
+    # Check for uniqueness
   end
 
   # GET /images
@@ -14,7 +15,7 @@ class ImagesController < ApplicationController
 
   # GET /images/1
   def show
-    @imageuser = @image.ImageUsers.new
+    @image_user = ImageUser.new
     #@eligible_users
   end
 

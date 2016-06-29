@@ -12,7 +12,16 @@
 
 <p>
   <strong>User:</strong>
-  <%= @imageuser.all %>
+  <%=  %>
+</p>
+<p>
+  <strong>Test:</strong>
+  <% @image.image_users.each do |image_user| %>
+  <% if !image_user.new_record? %>
+    <%= image_user.user.name %><br>
+    <% end %>
+  <% end %>
+
 </p>
 
 <%= link_to 'Edit', edit_image_path(@image) %> |

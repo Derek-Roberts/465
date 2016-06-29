@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :Images, through: :ImageUsers
-  has_and_belongs_to_many :Images
+  has_many :images, through: :image_users
+  accepts_nested_attributes_for :images
 
 end
