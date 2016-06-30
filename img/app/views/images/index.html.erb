@@ -25,7 +25,13 @@ Signed in as <%= current_user.name %>. Not you?
         <!-- Need to display private images if the right user is logged in...will figure out later. -->
         <!--< if image.private == false >-->
           <td><%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></td>
-        <td><br><%= username.name %></td>
+        <td>
+          <!--< If nobody is signed in then display the username >-->
+          <% if user_signed_in? && current_user.name == username.name %>
+          <% else %>
+            <%= username.name %>
+          <% end %>
+        </td>
         <!--< end >-->
       </tr>
     <% end %>
