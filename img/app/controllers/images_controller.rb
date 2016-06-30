@@ -21,11 +21,6 @@ class ImagesController < ApplicationController
   def show
     @image_user = @image.image_users.new
     @image_user.user_id = @image.user_id
-    puts "Ayyyyy"
-    puts @image_user.image_id
-    puts @image_user.user_id
-    puts @image_user.user.name
-    puts "LMAO"
     #@eligible_users
   end
 
@@ -72,6 +67,9 @@ class ImagesController < ApplicationController
 
   # DELETE /images/1
   def destroy
+    # Must delete the image file itself
+    File.delete(Rails.root.join('public', 'images', @image.filename))
+
     @image.destroy
     respond_to do |format|
       format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
