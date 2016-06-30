@@ -10,6 +10,12 @@ Signed in as <%= current_user.name %>. Not you?
 <% end %>
 </div>
 
+<div id="upload_link">
+<% if user_signed_in? %>
+<%= link_to 'Upload an Image', new_image_path %>
+<% end %>
+</div>
+
 <h1>Listing Images</h1>
 
 <table>
@@ -26,7 +32,3 @@ Signed in as <%= current_user.name %>. Not you?
   </tbody>
 </table>
 
-<br>
-
-<% if user_signed_in? %>
-<%= link_to 'Upload an Image', new_image_path %>
