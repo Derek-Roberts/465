@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   #before_validation :available_users
+  has_many :image_users
   has_many :users, through: :image_users
   belongs_to :users
   accepts_nested_attributes_for :users
