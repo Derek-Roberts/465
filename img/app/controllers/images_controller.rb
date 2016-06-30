@@ -14,6 +14,11 @@ class ImagesController < ApplicationController
     #
     # This will display the public images and usernames
     @public_images = Image.all
+    @public_images.each do |image|
+      if image.private
+        @public_images = @public_images - [image]
+      end
+    end
     @usernames = @public_images.map { |image| User.find(image.user_id) }
   end
 
@@ -24,7 +29,7 @@ class ImagesController < ApplicationController
     # create new image_user to fill in on the image's show page
     @image_user = @image.image_users.new
     @image_user.user_id = @image.user_id
-    # 
+    @owned_by_current_user = (@image_user.user.name == current_user)
     #@eligible_users
   end
 

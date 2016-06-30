@@ -23,16 +23,16 @@ Signed in as <%= current_user.name %>. Not you?
     <% @public_images.zip(@usernames).each do |image, username| %>
       <tr style="float: left;">
         <!-- Need to display private images if the right user is logged in...will figure out later. -->
-        <!--< if image.private == false >-->
+        <% if image.private == false %>
           <td><%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></td>
-        <td>
+          <td>
           <!--< If nobody is signed in then display the username >-->
-          <% if user_signed_in? && current_user.name == username.name %>
-          <% else %>
+          <!--< if user_signed_in? && current_user.name == username.name >-->
+          <% if !@owned_by_current_user %>
             <%= username.name %>
           <% end %>
-        </td>
-        <!--< end >-->
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
