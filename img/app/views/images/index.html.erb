@@ -3,30 +3,15 @@
 <h1>Listing Images</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Private flag</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
-    <% @public_images.each do |image| %>
+    <% @public_images.zip(@usernames).each do |image, username| %>
       <tr>
         <!-- Need to display private images if the right user is logged in...will figure out later. -->
         <!--< if image.private == false >-->
           <td><%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></td>
-          <td><%= link_to 'Edit', edit_image_path(image) %></td>
-          <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= username.name %></td>
         <!--< end >-->
       </tr>
-    <% end %>
-  </tbody>
-  <tbody>
-    <% @usernames.each do |username| %>
-      <tr><%= username.name %></tr>
     <% end %>
   </tbody>
 </table>
