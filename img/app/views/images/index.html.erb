@@ -13,16 +13,20 @@
   </thead>
 
   <tbody>
-    <% @images.each do |image| %>
+    <% @public_images.each do |image| %>
       <tr>
         <!-- Need to display private images if the right user is logged in...will figure out later. -->
         <!--< if image.private == false >-->
-          <td><%= image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename %></td>
-          <td><%= link_to 'Show', image %></td>
+          <td><%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></td>
           <td><%= link_to 'Edit', edit_image_path(image) %></td>
           <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <!--< end >-->
       </tr>
+    <% end %>
+  </tbody>
+  <tbody>
+    <% @usernames.each do |username| %>
+      <tr><%= username.name %></tr>
     <% end %>
   </tbody>
 </table>

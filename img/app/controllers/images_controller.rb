@@ -10,7 +10,11 @@ class ImagesController < ApplicationController
 
   # GET /images
   def index
-    @images = Image.all
+    # Must check whether the user can see these images or not
+    #
+    # This will display the public images and usernames
+    @public_images = Image.all
+    @usernames = @public_images.map { |image| User.find(image.user_id) }
   end
 
   # GET /images/1
