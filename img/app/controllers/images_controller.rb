@@ -19,8 +19,12 @@ class ImagesController < ApplicationController
 
   # GET /images/1
   def show
+    # create new tag for image's show page
+    @tag = @image.tags.new
+    # create new image_user to fill in on the image's show page
     @image_user = @image.image_users.new
     @image_user.user_id = @image.user_id
+    # 
     #@eligible_users
   end
 
@@ -86,5 +90,13 @@ class ImagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
       params.require(:image).permit(:filename, :private, :user_id)
+    end
+
+    def users_without_access
+      user_array = User.all - self.users - [self.user]
+
+      #user_array.delete(self.user)
+
+      # ADD MORE HERE
     end
 end
