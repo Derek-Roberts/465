@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Filename:</strong>
-  <%= @image.filename %>
+  <%= image_tag root_url + "/images/" + @image.filename, size: "400x400", alt: @image.filename %>
 </p>
 
 <p>

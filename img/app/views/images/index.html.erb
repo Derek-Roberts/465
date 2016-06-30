@@ -5,11 +5,11 @@
 <table>
   <tbody>
     <% @public_images.zip(@usernames).each do |image, username| %>
-      <tr>
+      <tr style="float: left;">
         <!-- Need to display private images if the right user is logged in...will figure out later. -->
         <!--< if image.private == false >-->
           <td><%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></td>
-          <td><%= username.name %></td>
+        <td><br><%= username.name %></td>
         <!--< end >-->
       </tr>
     <% end %>
