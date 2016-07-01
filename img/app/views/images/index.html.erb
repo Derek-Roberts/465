@@ -18,23 +18,49 @@ Signed in as <%= current_user.name %>. Not you?
 
 <h1>Listing Images</h1>
 
+<h2>Public Images</h2>
 <table>
   <tbody>
     <% @public_images.zip(@usernames).each do |image, username| %>
       <tr style="float: left;">
         <!-- Need to display private images if the right user is logged in...will figure out later. -->
-        <% if image.private == false %>
           <td><%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></td>
           <td>
           <!--< If nobody is signed in then display the username >-->
           <!--< if user_signed_in? && current_user.name == username.name >-->
-          <% if !@owned_by_current_user %>
+          <% if user_signed_in? && current_user.name == username.name %>
+          <% else %>
             <%= username.name %>
           <% end %>
           </td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<% if user_signed_in? %>
+  <h2>Images Shared With You</h2>
+  <% if @shared_with_user.empty? %>
+    <h3>No images have been shared with you</h3>
+  <% else %>
+    <table>
+      <tbody>
+      </tbody>
+    </table>
+  <% end %>
+
+  <h2>Your Private Images</h2>
+  <% if @user_private_images.empty? %>
+    <h3>You have no private images</h3>
+  <% else %>
+    <table>
+      <tbody>
+        <% @user_private_images.each do |image| %>
+          <tr style="float: left;">
+            <td><%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

@@ -10,16 +10,25 @@ class ImagesController < ApplicationController
 
   # GET /images
   def index
-    # Must check whether the user can see these images or not
-    #
-    # This will display the public images and usernames
+    # Must check whether the user can see these private images or not
+    @shared_with_me = shared_with_me
+    # Creates the public_images array
     @public_images = Image.all
     @public_images.each do |image|
       if image.private
         @public_images = @public_images - [image]
       end
     end
+
+    @shared_with_user = Array.new
+
+    # Array of the usernames for the public images
     @usernames = @public_images.map { |image| User.find(image.user_id) }
+
+    # Check if an image is owned by the current user so the username won't be displayed
+    if user_signed_in?
+      @user_private_images = private_owned_by_user
+    end
   end
 
   # GET /images/1
@@ -103,5 +112,14 @@ class ImagesController < ApplicationController
       #user_array.delete(self.user)
 
       # ADD MORE HERE
+    end
+
+    def shared_with_me
+
+    end
+
+    def private_owned_by_user
+      @images = Image.all.map {|image| image if image.user_id == current_user.id && image.private == true }.compact
+      return @images
     end
 end
