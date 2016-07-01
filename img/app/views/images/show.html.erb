@@ -24,6 +24,22 @@
   </p>
 <% end %>
 
+<div class="tags_table">
+  <thead>
+    <tr>
+      <th><strong>Tags: </strong></th><br>
+    </tr>
+  </thead>
+  <tbody>
+    <% @image.tags.each do |tag| %>
+      <% if !tag.new_record? %>
+        <tr>
+          <td><%= tag.str %></td><br>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</div>
 
 <% if user_signed_in? && current_user.name == @image_user.user.name %>
   <p>
