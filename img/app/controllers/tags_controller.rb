@@ -29,7 +29,7 @@ class TagsController < ApplicationController
     if @tag.save
       redirect_to image_url(@tag.image_id), notice: 'Tag was successfully created.'
     else
-      render :new
+      redirect_to image_url(@tag.image_id), notice: 'The tag was empty and thus not created.'
     end
   end
 

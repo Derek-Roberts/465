@@ -42,17 +42,23 @@
     <% end %>
   </tbody>
 
-  <h3>Create New Tag</h3>
+  <strong>Create New Tag</strong>
   <%= render 'tags/form' %>
   <br>
 
 </div>
 
 <% if user_signed_in? && current_user.name == @image_user.user.name %>
-  <p>
-    <strong>Private flag:</strong>
-    <%= @image.private %>
-  </p>
+    <% if @image.private == false %>
+      <p>
+      <strong>This image is currently public. </strong>
+      <%= submit_tag :private %>
+      </p>
+    <% else %>
+
+    <% end %>
+
+  <br>
   <%= link_to 'Delete', @image, method: :delete, data: { confirm: 'Are you sure you want to delete this image?' } %> |
 <% end %>
 
