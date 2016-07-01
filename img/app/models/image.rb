@@ -9,15 +9,6 @@ class Image < ActiveRecord::Base
   # Delete the image's tags when the image has been deleted
   has_many :tags, dependent: :destroy
 
-  # Used to make image public
-  def make_public
-    self.update_attributes( :private => false )
-  end
-
-  # Used to make image private
-  def make_private
-    self.update_attributes( :private => true )
-  end
   # elsif self.user_id == user_id
   #   return true
   # elsif self.image_users.map (|im| im.user_id).index user_id
@@ -25,10 +16,11 @@ class Image < ActiveRecord::Base
   # end
   # return false
 
-  #def available_users
-    #users_array = User.all - self.user - [self.user]
+  def available_users
+    #users_array = User.all - self.user_id - [self.user_id]
     # Need to format here with username then email 
-  #end
+    #users_array.map { |user| [user.name + " (" + user.email + ")", user.id]}
+  end
   # 
   # Remove image file
   #
