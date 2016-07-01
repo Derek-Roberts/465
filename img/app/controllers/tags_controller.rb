@@ -8,6 +8,8 @@ class TagsController < ApplicationController
 
   # GET /tags/1
   def show
+    @image = Image.all.map { |img| img if img.id == @tag.image_id}
+    redirect_to @image
   end
 
   # GET /tags/new

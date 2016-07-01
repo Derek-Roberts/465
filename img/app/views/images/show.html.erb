@@ -35,7 +35,9 @@
       <% if !tag.new_record? %>
         <tr>
           <td><%= tag.str %></td>
-          <%= link_to 'Destroy', tag, method: :delete %><br>
+          <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+          <td><%= link_to 'Remove', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <br>
         </tr>
       <% end %>
     <% end %>
