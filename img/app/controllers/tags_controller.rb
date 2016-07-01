@@ -7,10 +7,10 @@ class TagsController < ApplicationController
   end
 
   # GET /tags/1
-  def show
-    @image = Image.all.map { |img| img if img.id == @tag.image_id}
-    redirect_to @image
-  end
+  #def show
+    #@image = Image.all.map { |img| img if img.id == @tag.image_id}
+    #redirect_to @image
+  #end
 
   # GET /tags/new
   def new
@@ -23,29 +23,22 @@ class TagsController < ApplicationController
 
   # POST /tags
   def create
-    @tag = Tag.new(tag_params)
+    @image = Image.find params[:image_id]
+    @tag = @image.tags.new(tag_params)
 
-    respond_to do |format|
-      if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
-        format.json { render :show, status: :created, location: @tag }
-      else
-        format.html { render :new }
-        format.json { render json: @tag.errors, status: :unprocessable_entity }
-      end
+    if @tag.save
+      redirect_to image_url(@tag.image_id), notice: 'Tag was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /tags/1
   def update
-    respond_to do |format|
-      if @tag.update(tag_params)
-        format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tag }
-      else
-        format.html { render :edit }
-        format.json { render json: @tag.errors, status: :unprocessable_entity }
-      end
+    if @tag.update(tag_params)
+      redirect_to image_url(@tag.image_id), notice: 'Tag was successfully updated.'
+    else
+      render :edit
     end
   end
 

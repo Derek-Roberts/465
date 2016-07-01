@@ -34,13 +34,17 @@
           <td><%= tag.str %></td>
           <% if user_signed_in? && current_user.name == @image_user.user.name %>
             <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-            <td><%= link_to 'Remove', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Remove', tag, method: :delete, data: { confirm: 'Are you sure you want to remove this tag?' } %></td>
           <% end %>
           <br>
         </tr>
       <% end %>
     <% end %>
   </tbody>
+
+  <h3>Create New Tag</h3>
+  <%= render 'tags/form' %>
+  <br>
 
 </div>
 
