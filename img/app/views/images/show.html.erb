@@ -6,11 +6,22 @@
   <%= image_tag root_url + "/images/" + @image.filename, size: "400x400", alt: @image.filename %>
 </p>
 
-<% if user_signed_in? && current_user.name != @image_user.user.name %>
-<p>
-  <strong>User:</strong>
-  <%= @image_user.user.name %>
-</p>
+<% if user_signed_in? %>
+  <% if current_user.name == @image_user.user.name %>
+  <p>
+    <strong>Owner: You</strong>
+  </p>
+  <% else %>
+    <p>
+      <strong>Owner:</strong>
+      <%= @image_user.user.name %>
+    </p>
+  <% end %>
+<% else %>
+  <p>
+    <strong>Owner:</strong>
+    <%= @image_user.user.name %>
+  </p>
 <% end %>
 
 
