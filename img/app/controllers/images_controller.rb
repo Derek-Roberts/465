@@ -27,7 +27,7 @@ class ImagesController < ApplicationController
 
     # Check if an image is owned by the current user so the username won't be displayed
     if user_signed_in?
-      @user_private_images = private_owned_by_user
+      @user_images = owned_by_user
     end
   end
 
@@ -118,8 +118,8 @@ class ImagesController < ApplicationController
 
     end
 
-    def private_owned_by_user
-      @images = Image.all.map {|image| image if image.user_id == current_user.id && image.private == true }.compact
+    def owned_by_user
+      @images = Image.all.map {|image| image if image.user_id == current_user.id}.compact
       return @images
     end
 end
