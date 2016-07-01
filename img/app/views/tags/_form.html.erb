@@ -11,10 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :Tag %><br>
-    <%= f.text_field :str %>
-  </div>
+  <% if @tag.new_record? %>
+    <%= @image.tags.fields_for :tag do |tags_form| %>
+      <%= tags_form.label :tag %>
+      <%= tags_form.label :tag %><br>
+    <% end %>
+  <% else %>
+    <div class="field">
+      <%= f.label :Tag %><br>
+      <%= f.text_field :str %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
