@@ -27,7 +27,9 @@ Signed in as <%= current_user.name %>. Not you?
       <tbody>
         <% @user_images.each do |image| %>
           <tr style="float: left;">
-            <td><%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></td>
+            <td>
+              <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -40,10 +42,11 @@ Signed in as <%= current_user.name %>. Not you?
   <% else %>
     <table>
       <tbody>
-        <% @shared_with_user.each do |image| %>
+        <% @shared_with_user.each do |image, username| %>
           <tr style="float: left;">
             <td>
               <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+              <br><%= username %>
             </td>
           </tr>
         <% end %>

@@ -111,8 +111,9 @@ class ImagesController < ApplicationController
 
     def shared_with_user
       @current_image_user = ImageUser.all.map { |image_user| image_user.image_id if image_user.user_id == current_user.id }.compact
-      @images = Image.all.map {|image| image if @current_image_user.include? image.id }.compact
-      return @images
+      @images = Image.all.map { |image| image if @current_image_user.include? image.id }.compact
+      @usernames = @images.map { |image| User.find(image.user_id).name }
+      return @images.zip(@usernames)
     end
 
     def owned_by_user
