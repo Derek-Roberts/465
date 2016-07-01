@@ -1,3 +1,4 @@
+<% if @has_access %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -22,3 +23,6 @@
 <% end %>
 
 <%= link_to 'Back', images_path %>
+<% else %>
+<h1>Stop poking around here!</h1>
+<% end %>

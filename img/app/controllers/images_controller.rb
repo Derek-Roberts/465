@@ -28,6 +28,8 @@ class ImagesController < ApplicationController
 
   # GET /images/1
   def show
+    # Check if user has access to image
+    @has_access = user_has_access @image
     # create new tag for image's show page
     @tag = @image.tags.new
     # create new image_user to fill in on the image's show page
@@ -119,5 +121,46 @@ class ImagesController < ApplicationController
     def owned_by_user
       @images = Image.all.map {|image| image if image.user_id == current_user.id}.compact
       return @images
+    end
+
+    def user_has_access image
+      # If the user isn't signed in, check whether the image is public or not
+      if !user_signed_in?
+        public_images = Image.all
+        public_images.each do |img|
+          if img.private
+            public_images = public_images - [img]
+          end
+        end
+        public_images.each do |img|
+          if img.id == image.id
+            return true
+          end
+        end
+      # If the user is signed in, check if the user id matches the image id
+      elsif image.user_id == current_user.id
+        return true
+      # If the user id doesn't match the image id, check if the image is public or it has been shared with the user
+      else
+        public_images = Image.all
+        public_images.each do |img|
+          if img.private
+            public_images = public_images - [img]
+          end
+        end
+        public_images.each do |img|
+          if img.id == image.id
+            return true
+          end
+        end
+        shared_images = shared_with_user
+        shared_images.each do |img, user_id|
+          if img.id == image.id
+            return true
+          end
+        end
+      end
+      # Retrurn false because the tests have failed
+      return false
     end
 end
