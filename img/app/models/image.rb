@@ -1,6 +1,5 @@
 class Image < ActiveRecord::Base
   #before_validation :available_users
-  validates_presence_of :uploaded_file
   
   has_many :image_users
   has_many :users, through: :image_users
@@ -10,6 +9,15 @@ class Image < ActiveRecord::Base
   # Delete the image's tags when the image has been deleted
   has_many :tags, dependent: :destroy
 
+  # Used to make image public
+  def make_public
+    self.update_attributes( :private => false )
+  end
+
+  # Used to make image private
+  def make_private
+    self.update_attributes( :private => true )
+  end
   # elsif self.user_id == user_id
   #   return true
   # elsif self.image_users.map (|im| im.user_id).index user_id

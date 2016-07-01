@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /images
   def index
     # Check if an image is owned by the current user so the username won't be displayed
@@ -53,7 +53,6 @@ class ImagesController < ApplicationController
       flash[:notice] = "Please choose a file to upload."
       render :new
     else
-    
 
     File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
         file.write(@uploaded_io.read)
@@ -68,17 +67,29 @@ class ImagesController < ApplicationController
     end
   end
 
+  # The update is only needed for 
   # PATCH/PUT /images/1
   def update
-    respond_to do |format|
-      if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
-        format.json { render :show, status: :ok, location: @image }
-      else
-        format.html { render :edit }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
+    if @image.private
+      @pub_or_priv = "public"
+    else
+      @pub_or_priv = "private"
     end
+
+    if @image.update(image_params)
+      redirect_to @image, notice: "The image is now #{@pub_or_priv}."
+    else
+      redirect_to @image, notice: 'Something went wrong while updating privacy settings for the current image.'
+    end
+   # respond_to do |format|
+   #   if @image.update(image_params)
+   #     format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+   #     format.json { render :show, status: :ok, location: @image }
+   #   else
+   #     format.html { render :edit }
+   #     format.json { render json: @image.errors, status: :unprocessable_entity }
+   #   end
+   # end
   end
 
   # DELETE /images/1

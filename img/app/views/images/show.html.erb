@@ -41,21 +41,27 @@
       <% end %>
     <% end %>
   </tbody>
-
-  <strong>Create New Tag</strong>
-  <%= render 'tags/form' %>
   <br>
+
+  <% if user_signed_in? && current_user.name == @image_user.user.name %>
+    <strong>Create New Tag</strong>
+    <%= render 'tags/form' %>
+    <br>
+  <% end %>
 
 </div>
 
 <% if user_signed_in? && current_user.name == @image_user.user.name %>
     <% if @image.private == false %>
-      <p>
-      <strong>This image is currently public. </strong>
-      <%= submit_tag :private %>
-      </p>
+      <%= form_for @image do |f| %>
+        <%= f.hidden_field :private, value: true %>
+        <%= f.submit 'Make Private?' %>
+      <% end %>
     <% else %>
-
+      <%= form_for @image do |f| %>
+        <%= f.hidden_field :private, value: false %>
+        <%= f.submit 'Make Public?' %>
+      <% end %>
     <% end %>
 
   <br>
