@@ -1,13 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
-  # Generates the random filename for the images create function that is 15 characters long and includes lowercase letters and numbers then appends .jpg to the end
-  def generate_filename
-    charset = Array('a'..'z') + Array(1..9)
-    @image.filename = Array.new(15) {charset.sample}.join.concat(".jpg")
-    # Check for uniqueness
-  end
-
   # GET /images
   def index
     # Check if an image is owned by the current user so the username won't be displayed
@@ -51,10 +44,16 @@ class ImagesController < ApplicationController
   # POST /images
   def create
     @image = Image.new(image_params)
-    @image.generate_filename  # a function you write to generate a random filename and put it in the images "filename" variable
-    @image.user = current_user
+    @image.filename = generate_filename
+    @image.user_id = current_user.id
 
     @uploaded_io = params[:image][:uploaded_file]
+    
+    if @uplaoded_io == nil
+      flash[:notice] = "Please choose a file to upload."
+      render :new
+    else
+    
 
     File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
         file.write(@uploaded_io.read)
@@ -64,6 +63,8 @@ class ImagesController < ApplicationController
       redirect_to @image, notice: 'Image was successfully created.'
     else
       render :new
+    end
+
     end
   end
 
@@ -163,4 +164,15 @@ class ImagesController < ApplicationController
       # Retrurn false because the tests have failed
       return false
     end
+  # Generates the random filename for the images create function that is 15 characters long and includes lowercase letters and numbers then appends .jpg to the end
+  def generate_filename
+    charset = Array('a'..'z') + Array(1..9)
+    filename = Array.new(15) {charset.sample}.join.concat(".jpg")
+    # Check if filename already exists, if it does generate a new one
+    image_filenames = Image.all.map { |img| img.filename }
+    while image_filenames.include? filename
+      filename = Array.new(15) {charset.sample}.join.concat(".jpg")
+    end
+    return filename
+  end
 end

@@ -1,5 +1,7 @@
 class Image < ActiveRecord::Base
   #before_validation :available_users
+  validates_presence_of :uploaded_file
+  
   has_many :image_users
   has_many :users, through: :image_users
   belongs_to :users
