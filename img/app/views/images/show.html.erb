@@ -1,28 +1,32 @@
 <% if @has_access %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <%= image_tag root_url + "/images/" + @image.filename, size: "400x400", alt: @image.filename %>
 </p>
 
-<p>
-  <strong>Private flag:</strong>
-  <%= @image.private %>
-</p>
-
+<% if user_signed_in? && current_user.name != @image_user.user.name %>
 <p>
   <strong>User:</strong>
   <%= @image_user.user.name %>
 </p>
+<% end %>
 
 
 <% if user_signed_in? && current_user.name == @image_user.user.name %>
+  <p>
+    <strong>Private flag:</strong>
+    <%= @image.private %>
+  </p>
   <%= link_to 'Edit', edit_image_path(@image) %> |
-  <%= link_to 'Destroy', @image, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% else %>
+  <%= link_to 'Destroy', @image, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>
 
 <%= link_to 'Back', images_path %>
+
 <% else %>
-<h1>Stop poking around here!</h1>
+
+  <h1>Stop poking around here!</h1>
+
 <% end %>
