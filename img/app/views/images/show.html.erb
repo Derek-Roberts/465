@@ -34,7 +34,8 @@
     <% @image.tags.each do |tag| %>
       <% if !tag.new_record? %>
         <tr>
-          <td><%= tag.str %></td><br>
+          <td><%= tag.str %></td>
+          <%= link_to 'Destroy', tag, method: :delete %><br>
         </tr>
       <% end %>
     <% end %>
