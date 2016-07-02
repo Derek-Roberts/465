@@ -34,9 +34,11 @@ class ImageUsersController < ApplicationController
     #@image_user.user_id = params[:user_id]
     if @image_user.save
         #format.html { redirect_to image_path(@image_user), notice: 'Image was successfully shared' }
+        flash[:notice] = "Image successfully shared"
         redirect_to :back
     else
-        format.html { redirect_to image_path(@image_user), notice: 'Image was unsuccessfully shared' }
+        flash[:notice] = "Image unsuccessfully shared.  Something went wrong"
+        redirect_to :back
     end
   end
 
@@ -45,11 +47,11 @@ class ImageUsersController < ApplicationController
   def update
     respond_to do |format|
       if @image_user.update(image_user_params)
-        format.html { redirect_to @image_user, notice: 'Image user was successfully updated.' }
-        format.json { render :show, status: :ok, location: @image_user }
+        flash[:notice] = "Image has been successfully updated"
+        redirect_to :back
       else
-        format.html { render :edit }
-        format.json { render json: @image_user.errors, status: :unprocessable_entity }
+        flash[:notice] = "Image was unable to be updated.  Something went wrong"
+        redirect_to :back
       end
     end
   end
@@ -58,10 +60,12 @@ class ImageUsersController < ApplicationController
   # DELETE /image_users/1.json
   def destroy
     @image_user.destroy
-    respond_to do |format|
-      format.html { redirect_to image_users_url, notice: 'Image user was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    #respond_to do |format|
+    #    flash[:notice] = "Image has been successfully unshared"
+    #    redirect_to :back
+    #end
+        flash[:notice] = "Image has been successfully unshared"
+        redirect_to :back
   end
 
   private

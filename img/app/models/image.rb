@@ -17,10 +17,11 @@ class Image < ActiveRecord::Base
   # return false
   def current_shared
     shared_image_users = ImageUser.all.map { |user| user if user.image_id == self.id }.compact
-    shared_users = shared_image_users.map { |u| User.find(u.user_id) }.compact
-    user = User.all.map {|u| u if u.id == self.user_id }.compact
-    users_array = shared_users - user 
-    users_array.map { |user| [user.name + " (" + user.email + ")", user.id]}
+    #image_users_id = ImageUser.all.map { |user| user.id if user.image_id == self.id }.compact
+    users_array = shared_image_users.map { |u| [User.find(u.user_id), u.id] }.compact
+    #user = User.all.map {|u| u if u.id == self.user_id }.compact
+    #users_array = shared_users - user 
+    users_array.map { |user| [user.first.name + " (" + user.first.email + ")", user.first.id, user.last]}
   end
 
   def available_users
