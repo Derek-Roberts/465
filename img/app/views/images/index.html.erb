@@ -16,7 +16,7 @@
         <% @user_images.each do |image| %>
           <tr style="float: left;">
             <td>
-              <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+              <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename, class:".img-zoom"), image %>
             </td>
           </tr>
         <% end %>
@@ -33,7 +33,7 @@
         <% @shared_with_user.each do |image, username| %>
           <tr style="float: left;">
             <td>
-              <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+              <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename, class:".img-zoom"), image %>
               <br><%= username %>
             </td>
           </tr>
@@ -50,7 +50,7 @@
       <tr style="float: left;">
         <!-- Need to display private images if the right user is logged in...will figure out later. -->
           <td>
-            <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+            <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename, class:".img-zoom"), image %>
             <!--< If nobody is signed in then display the username >-->
             <!--< if user_signed_in? && current_user.name == username.name >-->
             <% if user_signed_in? && current_user.name == username.name %>

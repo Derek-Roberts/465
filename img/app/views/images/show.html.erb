@@ -64,7 +64,7 @@
           <% @image.current_shared.each do |user| %> 
             <%= user.first %>
            <!-- <= link_to 'Remove', image_user_path(user.last), method: :delete, data: { confirm: 'Are you sure you want to unshare with this user?'} ><br> -->
-            <%= link_to 'Remove', image_user_path(user.last), method: :delete, data: { confirm: 'Are you sure you want to unshare with this user?'} %><br>
+            <%= link_to 'Remove', image_user_path(user.last), method: :delete %><br>
           <% end %>
           <%= f.select :user_id, @image.available_users %>
           <%= f.hidden_field :image_id, value: @image.id %>
