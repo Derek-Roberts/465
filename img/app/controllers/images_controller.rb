@@ -48,22 +48,19 @@ class ImagesController < ApplicationController
     @image.user_id = current_user.id
 
     @uploaded_io = params[:image][:uploaded_file]
-    
-    if @uplaoded_io == nil
-      flash[:notice] = "Please choose a file to upload."
+
+    if params[:image][:uploaded_file].blank?
+      flash[:notice] = "File field can't be blank"
       render :new
     else
-
-    File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
+      File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
         file.write(@uploaded_io.read)
-    end
-
-    if @image.save
-      redirect_to @image, notice: 'Image was successfully created.'
-    else
-      render :new
-    end
-
+      end
+      if @image.save
+        redirect_to @image, notice: 'Image was successfully created.'
+      else
+        render :new
+      end
     end
   end
 
