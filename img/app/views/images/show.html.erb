@@ -58,14 +58,18 @@
         <%= f.submit 'Make Private?' %>
       <% end %>
     <% else %>
-      <%= form_for ([@image,@image_user]) do |f| %>
-        <%= f.hidden_field :private, value: false %>
-        <%= f.submit 'Make Public?' %>
-        <div class="field">
-          <!--<= f.select :image_id, @image.available_users %>-->
-          <!--<= f.submit "Share image with user" %>-->
-        </div>
-      <% end %>
+      <div class="field">
+        <%= form_for ([@image,@image_user]) do |f| %>
+          <strong>Currently shared with:</strong><br>
+          <% @image.current_shared.each do |user| %> 
+            <%= user.first %><br>
+          <% end %>
+          <%= f.select :user_id, @image.available_users %>
+          <%= f.submit "Share image with user" %><br><br>
+          <%= f.hidden_field :private, value: false %>
+          <%= f.submit 'Make Public?' %>
+        <% end %>
+      </div>
     <% end %>
 
   <br>
