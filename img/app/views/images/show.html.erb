@@ -65,7 +65,10 @@
             <%= user.first %><br>
           <% end %>
           <%= f.select :user_id, @image.available_users %>
+          <%= f.hidden_field :image_id, value: @image.id %>
           <%= f.submit "Share image with user" %><br><br>
+        <% end %>
+        <%= form_for @image do |f| %>
           <%= f.hidden_field :private, value: false %>
           <%= f.submit 'Make Public?' %>
         <% end %>

@@ -15,7 +15,6 @@ class ImageUsersController < ApplicationController
   # GET /image_users/new
   def new
     @image_user = ImageUser.new(image_user_params)
-    puts "Creating now!"
     #@id = params[:id]
     #puts "ID is: " + @id
     @image_user = ImageUser.create
@@ -30,16 +29,15 @@ class ImageUsersController < ApplicationController
   # POST /image_users.json
   def create
     #@image_user = @image.image_users.new(image_user_params)
-
-    @image_user.image_id = params[:id]
-    @image_user.user_id = params[:user_id]
-    puts '/n/n/n/n/n/n/n/n'
-    puts @image_user
-    puts @image_user.image_id
-    puts @image_user.user_id
-    puts '/n/n/n/n/n/n/n/n'
-    
-    @image_user.save
+    @image_user = ImageUser.new(image_user_params)
+    @image_user.image_id = params[:image_id]
+    #@image_user.user_id = params[:user_id]
+    if @image_user.save
+        #format.html { redirect_to image_path(@image_user), notice: 'Image was successfully shared' }
+        redirect_to :back
+    else
+        format.html { redirect_to image_path(@image_user), notice: 'Image was unsuccessfully shared' }
+    end
   end
 
   # PATCH/PUT /image_users/1
